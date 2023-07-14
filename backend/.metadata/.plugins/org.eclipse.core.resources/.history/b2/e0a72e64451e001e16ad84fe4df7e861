@@ -1,0 +1,5 @@
+package com.pro.crud.repo;
+
+public interface gopiToRaviRepo {
+
+}

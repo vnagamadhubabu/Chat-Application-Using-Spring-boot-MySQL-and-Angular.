@@ -1,0 +1,84 @@
+package com.pro.crud.controller;
+
+import java.time.LocalDateTime;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.pro.crud.entity.ramToRaviChat;
+import com.pro.crud.entity.raviToRamChat;
+import com.pro.crud.repo.gopiToGroupRepo;
+import com.pro.crud.repo.gopiToRamRepo;
+import com.pro.crud.repo.gopiToRaviRepo;
+import com.pro.crud.repo.ramToGopiRepo;
+import com.pro.crud.repo.ramToGroupRepo;
+import com.pro.crud.repo.ramToRaviRepo;
+import com.pro.crud.repo.raviToGopiRepo;
+import com.pro.crud.repo.raviToGroupRepo;
+import com.pro.crud.repo.raviToRamRepo;
+
+@RestController
+public class controller {
+	
+	@Autowired
+	ramToRaviRepo ramToRaviREPO;
+	
+	@Autowired
+	raviToRamRepo raviToRamREPO;
+	
+	@Autowired
+	gopiToRamRepo gopiToRamREPO;
+	
+	@Autowired
+	gopiToRaviRepo gopiToRaviREPO;
+	
+	@Autowired
+	ramToGopiRepo ramToGopiREPO;
+	
+	@Autowired
+	raviToGopiRepo raviToGopiREPO;
+	
+	@Autowired
+	ramToGroupRepo ramToGroupREPO;
+	
+	@Autowired
+	raviToGroupRepo raviToGroupREPO;
+	
+	@Autowired
+	gopiToGroupRepo gopiToGroupREPO;
+	
+	@PostMapping("/ramToRavi/{message}")
+	public void sendMessage(@PathVariable("message") String message) {
+		
+		LocalDateTime currentDateTime = LocalDateTime.now();
+		ramToRaviChat ramToRaviChat = new ramToRaviChat();
+		ramToRaviChat.setSendMessage(message);
+		ramToRaviChat.setTimeAndDate(currentDateTime.toString());
+		ramToRaviREPO.save(ramToRaviChat);
+		
+		raviToRamChat raviToRamChat = new raviToRamChat();
+		raviToRamChat.setReceiveMessage(message);
+		raviToRamChat.setTimeAndDate(currentDateTime.toString());
+		raviToRamREPO.save(raviToRamChat);
+		
+	}
+	@PostMapping("/raviToRam/{message}")
+	public void sendMes(@PathVariable("message") String message) {
+		
+		LocalDateTime currentDateTime = LocalDateTime.now();
+		
+		raviToRamChat raviToRamChat = new raviToRamChat();
+		raviToRamChat.setSendMessage(message);
+		raviToRamChat.setTimeAndDate(currentDateTime.toString());
+		raviToRamREPO.save(raviToRamChat);
+		
+		ramToRaviChat ramToRaviChat = new ramToRaviChat();
+		ramToRaviChat.setReceiveMessage(message);
+		ramToRaviChat.setTimeAndDate(currentDateTime.toString());
+		ramToRaviREPO.save(ramToRaviChat);
+		
+	}
+
+}

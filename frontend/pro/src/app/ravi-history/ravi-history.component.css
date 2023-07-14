@@ -1,0 +1,28 @@
+.header{
+  background-color: seagreen;
+  padding: 25px;
+  color: silver;
+  font-weight: bold;
+  font-size: 30px;
+ 
+}
+*{
+  margin: 0;
+  font-family: sans-serif;
+}
+p{
+  color: blue;
+  font-weight: bold;
+  
+}
+table{
+  width:100%;
+}
+th{
+  background-color: darkseagreen;
+  color: green;
+}
+td{
+  background-color:teal;
+  color: white;
+}

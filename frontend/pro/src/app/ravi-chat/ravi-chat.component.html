@@ -1,0 +1,56 @@
+<div class="contacts">
+  <div class="header">Chat Application</div>
+  <ul>
+    <div class="history"><button type="button" (click)="history()">History</button></div>
+    <li><input type="button" (click)="ram()" value="Ram" *ngIf="ramm"></li>
+    <li><input type="button" (click)="gopi()" value="Gopi" *ngIf="gopii"></li>
+    <li><input type="button" (click)="group()" value="Group" *ngIf="groupp"></li>
+  </ul>
+</div>
+<div *ngIf=ra>
+  
+<div class="name">Ram<button (click)="back()">< Back</button></div><br>
+<div class="chatBox">
+  <div  *ngFor="let item of chat" >
+    <div class="sendMsg">{{item.sendMessage}}</div><br>
+    <div class="resMsg">{{item.receiveMessage}}</div><br>
+  </div>
+</div>
+
+<div class="butMsg">
+  <input type="text" #msg class="msg" (keyup.enter)="sendButton.click()" [(ngModel)]="message">
+  <input type="button" #sendButton (click)="sent(msg.value)" value="Send" class="sendd"> 
+</div>
+</div>
+<div *ngIf=gop>
+  <div class="name">Gopi<button (click)="back()">< Back</button></div><br>
+  <div class="chatBox">
+    <div  *ngFor="let item of chat1" >
+      <div class="sendMsg">{{item.sendMessage}}</div><br>
+      <div class="resMsg">{{item.receiveMessage}}</div><br>
+    </div>
+  </div>
+  
+  <div class="butMsg">
+    <input type="text" #msgg class="msg" (keyup.enter)="sendButton.click()" [(ngModel)]="message">
+    <input type="button" #sendButton (click)="sent1(msgg.value)" value="Send" class="sendd"> 
+  </div>
+</div>
+<div *ngIf=goup>
+  <div class="name">Group<button (click)="back()">< Back</button></div><br>
+  <div class="chatBox">
+    <div  *ngFor="let item of chat2" >
+      <div class="sendMsg" *ngIf="item.sendMessage">{{item.sendMessage}}<br><p>Me</p></div><br>
+      <div class="resMsg" *ngIf="item.ramMsg">{{item.ramMsg}}<br><p>Ram</p></div><br><br>
+      <div class="resMsg" *ngIf="item.gopiMsg">{{item.gopiMsg}}<br><p>Goip</p></div><br><br>
+    </div>
+  </div>
+  
+  <div class="butMsg">
+    <input type="text" #mssg class="msg" (keyup.enter)="sendButton.click()" [(ngModel)]="message">
+    <input type="button" #sendButton (click)="sent2(mssg.value)" value="Send" class="sendd"> 
+  </div>
+</div>
+<div class="startChat" *ngIf="start">
+  Start + Chat 
+</div>

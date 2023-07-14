@@ -1,0 +1,36 @@
+package com.pro.crud.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.pro.crud.entity.ramToRaviChat;
+import com.pro.crud.entity.raviToRamChat;
+import com.pro.crud.repo.ramToRaviRepo;
+import com.pro.crud.repo.raviToRamRepo;
+
+@RestController
+public class controller {
+	
+	@Autowired
+	ramToRaviRepo ramToRaviREPO;
+	
+	@Autowired
+	raviToRamRepo raviToRamREPO;
+	
+	@PostMapping("/ramToRavi/{message}")
+	public void sendMessage(@PathVariable("message") String message) {
+		
+		ramToRaviChat ramToRaviChat = new ramToRaviChat();
+		ramToRaviChat.setSendMessage(message);
+		ramToRaviREPO.save(ramToRaviChat);
+		
+		raviToRamChat raviToRamChat = new raviToRamChat();
+		raviToRamChat.setReceiveMessage(message);
+		raviToRamREPO.save(raviToRamChat);
+		
+	
+	}
+
+}

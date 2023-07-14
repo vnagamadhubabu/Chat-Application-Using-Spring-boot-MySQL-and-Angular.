@@ -1,0 +1,41 @@
+package com.pro.crud.controller;
+
+import java.time.LocalDateTime;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.pro.crud.entity.ramToRaviChat;
+import com.pro.crud.entity.raviToRamChat;
+import com.pro.crud.repo.ramToRaviRepo;
+import com.pro.crud.repo.raviToRamRepo;
+
+@RestController
+public class controller {
+	
+	@Autowired
+	ramToRaviRepo ramToRaviREPO;
+	
+	@Autowired
+	raviToRamRepo raviToRamREPO;
+	
+	@PostMapping("/ramToRavi/{message}")
+	public void sendMessage(@PathVariable("message") String message) {
+		
+		LocalDateTime currentDateTime = LocalDateTime.now();
+		ramToRaviChat ramToRaviChat = new ramToRaviChat();
+		ramToRaviChat.setSendMessage(message);
+		ramToRaviChat.setTimeAndDate(currentDateTime.toString());
+		ramToRaviREPO.save(ramToRaviChat);
+		
+		raviToRamChat raviToRamChat = new raviToRamChat();
+		raviToRamChat.setReceiveMessage(message);
+		raviToRamChat.setTimeAndDate(currentDateTime.toString());
+		raviToRamREPO.save(raviToRamChat);
+		
+	
+	}
+
+}

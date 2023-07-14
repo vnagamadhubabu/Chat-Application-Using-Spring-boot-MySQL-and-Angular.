@@ -1,0 +1,60 @@
+<div>
+  <div class="header">
+    Ravi Chat History
+  </div>
+  <div>
+    <p>Ravi and Ram Chat History</p>
+    <table  border="1">
+      <tr>
+        <th>Ram Message</th>
+        <th>Ravi Message</th>
+        <th>Time and Date</th>
+      </tr>
+      <tr *ngFor="let item of chat">
+        <td>{{item.receiveMessage}}</td>
+        <td>{{item.sendMessage}}</td>
+        <td>{{item.timeAndDate}}</td>
+  
+      </tr>
+    </table>
+   
+  </div>
+
+  <div>
+    <p>Ravi and Gopi Chat History</p>
+    <table border="1">
+      <tr>
+        <th>Ravi Message</th>
+        <th>Gopi Message</th>
+        <th>Time and Date</th>
+      </tr>
+      <tr *ngFor="let item of chat1">
+        <td>{{item.sendMessage}}</td>
+        <td>{{item.receiveMessage}}</td>
+        <td>{{item.timeAndDate}}</td>
+  
+      </tr>
+    </table>
+    
+  </div>
+  <div>
+    <p>Gorup Chat History</p>
+    <table border="1">
+      <tr>
+        <th>Ram Message</th>
+        <th>Gopi Message</th>
+        <th>Ravi Message</th>
+        <th>Time and Date</th>
+      </tr>
+      <tr *ngFor="let item of chat2">
+        <td>{{item.ramMsg}}</td>
+        <td>{{item.gopiMsg}}</td>
+        <td>{{item.sendMessage}}</td>
+        <td>{{item.timeAndDate}}</td>
+  
+      </tr>
+    </table>
+    
+  </div>
+
+</div>

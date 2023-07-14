@@ -1,0 +1,224 @@
+package com.pro.crud.controller;
+
+import java.time.LocalDateTime;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.pro.crud.entity.gopiToGroupChat;
+import com.pro.crud.entity.gopiToRamChat;
+import com.pro.crud.entity.gopiToRaviChat;
+import com.pro.crud.entity.ramToGopiChat;
+import com.pro.crud.entity.ramToGroupChat;
+import com.pro.crud.entity.ramToRaviChat;
+import com.pro.crud.entity.raviToGopiChat;
+import com.pro.crud.entity.raviToGroupChat;
+import com.pro.crud.entity.raviToRamChat;
+import com.pro.crud.repo.gopiToGroupRepo;
+import com.pro.crud.repo.gopiToRamRepo;
+import com.pro.crud.repo.gopiToRaviRepo;
+import com.pro.crud.repo.ramToGopiRepo;
+import com.pro.crud.repo.ramToGroupRepo;
+import com.pro.crud.repo.ramToRaviRepo;
+import com.pro.crud.repo.raviToGopiRepo;
+import com.pro.crud.repo.raviToGroupRepo;
+import com.pro.crud.repo.raviToRamRepo;
+
+@RestController
+public class controller {
+	
+	@Autowired
+	ramToRaviRepo ramToRaviREPO;
+	
+	@Autowired
+	raviToRamRepo raviToRamREPO;
+	
+	@Autowired
+	gopiToRamRepo gopiToRamREPO;
+	
+	@Autowired
+	gopiToRaviRepo gopiToRaviREPO;
+	
+	@Autowired
+	ramToGopiRepo ramToGopiREPO;
+	
+	@Autowired
+	raviToGopiRepo raviToGopiREPO;
+	
+	@Autowired
+	ramToGroupRepo ramToGroupREPO;
+	
+	@Autowired
+	raviToGroupRepo raviToGroupREPO;
+	
+	@Autowired
+	gopiToGroupRepo gopiToGroupREPO;
+	
+	@GetMapping("/ramToRavi")
+	public List<ramToRaviChat> getChatRamToRavi() {
+		return ramToRaviREPO.findAll();
+	}
+	
+	@GetMapping("/raviToRam")
+	public List<raviToRamChat> getChatRaviToRam() {
+		return raviToRamREPO.findAll();
+	}
+	
+	@PostMapping("/ramToRavi/{message}")
+	public void sendMessage(@PathVariable("message") String message) {
+		
+		LocalDateTime currentDateTime = LocalDateTime.now();
+		ramToRaviChat ramToRaviChat = new ramToRaviChat();
+		ramToRaviChat.setSendMessage(message);
+		ramToRaviChat.setTimeAndDate(currentDateTime.toString());
+		ramToRaviREPO.save(ramToRaviChat);
+		
+		raviToRamChat raviToRamChat = new raviToRamChat();
+		raviToRamChat.setReceiveMessage(message);
+		raviToRamChat.setTimeAndDate(currentDateTime.toString());
+		raviToRamREPO.save(raviToRamChat);
+		
+	}
+	@PostMapping("/raviToRam/{message}")
+	public void sendMes(@PathVariable("message") String message) {
+		
+		LocalDateTime currentDateTime = LocalDateTime.now();
+		
+		raviToRamChat raviToRamChat = new raviToRamChat();
+		raviToRamChat.setSendMessage(message);
+		raviToRamChat.setTimeAndDate(currentDateTime.toString());
+		raviToRamREPO.save(raviToRamChat);
+		
+		ramToRaviChat ramToRaviChat = new ramToRaviChat();
+		ramToRaviChat.setReceiveMessage(message);
+		ramToRaviChat.setTimeAndDate(currentDateTime.toString());
+		ramToRaviREPO.save(ramToRaviChat);
+		
+	}
+	@PostMapping("/ramToGopi/{message}")
+	public void sendMsg(@PathVariable("message") String message) {
+		
+		LocalDateTime currentDateTime = LocalDateTime.now();
+		
+		ramToGopiChat ramToGopiChat = new ramToGopiChat();
+		ramToGopiChat.setSendMessage(message);
+		ramToGopiChat.setTimeAndDate(currentDateTime.toString());
+		ramToGopiREPO.save(ramToGopiChat);
+		
+		gopiToRamChat gopiToRamChat = new gopiToRamChat();
+		gopiToRamChat.setReceiveMessage(message);
+		gopiToRamChat.setTimeAndDate(currentDateTime.toString());
+		gopiToRamREPO.save(gopiToRamChat);
+		
+	}
+	@PostMapping("/raviToGopi/{message}")
+	public void sendMssg(@PathVariable("message") String message) {
+		
+		LocalDateTime currentDateTime = LocalDateTime.now();
+		
+		raviToGopiChat raviToGopiChat = new raviToGopiChat();
+		raviToGopiChat.setSendMessage(message);
+		raviToGopiChat.setTimeAndDate(currentDateTime.toString());
+		raviToGopiREPO.save(raviToGopiChat);
+		
+		gopiToRaviChat gopiToRaviChat = new gopiToRaviChat();
+		gopiToRaviChat.setReceiveMessage(message);
+		gopiToRaviChat.setTimeAndDate(currentDateTime.toString());
+		gopiToRaviREPO.save(gopiToRaviChat);
+		
+	}
+	@PostMapping("/gopiToRavi/{message}")
+	public void sendMsse(@PathVariable("message") String message) {
+		
+		LocalDateTime currentDateTime = LocalDateTime.now();
+
+		gopiToRaviChat gopiToRaviChat = new gopiToRaviChat();
+		gopiToRaviChat.setSendMessage(message);
+		gopiToRaviChat.setTimeAndDate(currentDateTime.toString());
+		gopiToRaviREPO.save(gopiToRaviChat);
+		
+		raviToGopiChat raviToGopiChat = new raviToGopiChat();
+		raviToGopiChat.setReceiveMessage(message);
+		raviToGopiChat.setTimeAndDate(currentDateTime.toString());
+		raviToGopiREPO.save(raviToGopiChat);
+		
+	}
+	@PostMapping("/gopiToRam/{message}")
+	public void sendMse(@PathVariable("message") String message) {
+		
+		LocalDateTime currentDateTime = LocalDateTime.now();
+
+		gopiToRamChat gopiToRamChat = new gopiToRamChat();
+		gopiToRamChat.setSendMessage(message);
+		gopiToRamChat.setTimeAndDate(currentDateTime.toString());
+		gopiToRamREPO.save(gopiToRamChat);
+		
+		ramToGopiChat ramToGopiChat = new ramToGopiChat();
+		ramToGopiChat.setReceiveMessage(message);
+		ramToGopiChat.setTimeAndDate(currentDateTime.toString());
+		ramToGopiREPO.save(ramToGopiChat);
+		
+	}
+	@PostMapping("ramToGroup/{messagge}")
+	public void ramGroupMsg(@PathVariable("message") String message) {
+		LocalDateTime currentDateTime = LocalDateTime.now();
+		
+		ramToGroupChat ramToGroupChat = new ramToGroupChat();
+		ramToGroupChat.setSendMessage(message);
+		ramToGroupChat.setTimeAndDate(currentDateTime.toString());
+		ramToGroupREPO.save(ramToGroupChat);
+		
+		raviToGroupChat raviToGroupChat = new raviToGroupChat();
+		raviToGroupChat.setRamMsg(message);
+		raviToGroupChat.setTimeAndDate(currentDateTime.toString());
+		raviToGroupREPO.save(raviToGroupChat);
+		
+		gopiToGroupChat gopiToGroupChat = new gopiToGroupChat();
+		gopiToGroupChat.setRamMsg(message);
+		gopiToGroupChat.setTimeAndDate(currentDateTime.toString());
+		gopiToGroupREPO.save(gopiToGroupChat);
+	}
+	@PostMapping("raviToGroup/{messagge}")
+	public void raviGroupMsg(@PathVariable("message") String message) {
+		LocalDateTime currentDateTime = LocalDateTime.now();
+		
+		raviToGroupChat raviToGroupChat = new raviToGroupChat();
+		raviToGroupChat.setSendMessage(message);
+		raviToGroupChat.setTimeAndDate(currentDateTime.toString());
+		raviToGroupREPO.save(raviToGroupChat);
+		
+		ramToGroupChat ramToGroupChat = new ramToGroupChat();
+		ramToGroupChat.setRaviMsg(message);
+		ramToGroupChat.setTimeAndDate(currentDateTime.toString());
+		ramToGroupREPO.save(ramToGroupChat);
+		
+		gopiToGroupChat gopiToGroupChat = new gopiToGroupChat();
+		gopiToGroupChat.setRaviMsg(message);
+		gopiToGroupChat.setTimeAndDate(currentDateTime.toString());
+		gopiToGroupREPO.save(gopiToGroupChat);
+	}
+	@PostMapping("gopiToGroup/{messagge}")
+	public void gopiGroupMsg(@PathVariable("message") String message) {
+		LocalDateTime currentDateTime = LocalDateTime.now();
+		
+		gopiToGroupChat gopiToGroupChat = new gopiToGroupChat();
+		gopiToGroupChat.setSendMessage(message);
+		gopiToGroupChat.setTimeAndDate(currentDateTime.toString());
+		gopiToGroupREPO.save(gopiToGroupChat);
+		
+		raviToGroupChat raviToGroupChat = new raviToGroupChat();
+		raviToGroupChat.setGopiMsg(message);
+		raviToGroupChat.setTimeAndDate(currentDateTime.toString());
+		raviToGroupREPO.save(raviToGroupChat);
+		
+		ramToGroupChat ramToGroupChat = new ramToGroupChat();
+		ramToGroupChat.setGopiMsg(message);
+		ramToGroupChat.setTimeAndDate(currentDateTime.toString());
+		ramToGroupREPO.save(ramToGroupChat);
+	}
+
+}
